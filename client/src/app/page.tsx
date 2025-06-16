@@ -1,7 +1,10 @@
+import EmployeeCard from "@/components/layout/EmployeeCard/EmployeeCard";
+import { employeeCard } from "@/mocks/EmployeeCard"
+
 export default function Home() {
-return(
-  <div>
-    <h1>HomePage!!</h1>
-  </div>
-)
+  return (
+    <div>
+        <EmployeeCard employeeCard={ employeeCard } />
+    </div>
+  )
 }
