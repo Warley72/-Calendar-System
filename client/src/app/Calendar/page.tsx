@@ -1,5 +1,7 @@
+import FullCalendarView from "@/components/layout/FullCalendarView/FullCalendarView";
+
 export default function Calendar () {
     return (
-        <div>page Calendar</div>
+        <div><FullCalendarView /></div>
     )
-} 
+}

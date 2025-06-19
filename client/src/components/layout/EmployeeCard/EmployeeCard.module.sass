@@ -1,7 +1,7 @@
 .wrapper
     display: flex
-    justify-content: center
     align-items: center
+    justify-content: center
     flex-direction: column
     gap: 2.5rem
 
@@ -10,9 +10,9 @@
 
 .card
     display: flex
-    justify-content: center
     align-items: center
-    flex-direction: column
+    justify-content: start
+    gap: 5rem
 
     max-width: 42rem
     width: 100%
@@ -31,20 +31,51 @@
         transform: scale(1.02)
         box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4)
 
-    h1
-        font-size: 2rem
-        font-weight: 600
-        color: #805151
+    .avatar
+        width: 6rem
+        height: 6rem
+        margin-left: 1rem
+        background: linear-gradient(#fff, #fff) padding-box, linear-gradient(145deg, #E17A7E, #87605F) border-box
+        border: 0.2rem solid transparent
+        background-origin: border-box
+        background-clip: padding-box, border-box
 
-    span
-        font-size: 1.8rem
-        font-weight: 600
-        color: #805151
+    .info
+        display: flex
+        align-items: center
+        justify-content: center
+        flex-direction: column
+
+        h1
+            font-size: 2rem
+            font-weight: 600
+            color: #805151
+
+        span
+            font-size: 1.8rem
+            font-weight: 600
+            color: #805151
 
     @media (max-width: 48rem)
         max-width: 32rem
-        
+        gap: 3rem
+
+        .avatar
+            width: 5rem
+            height: 5rem
+
+        .info
+            h1
+                font-size: 1.8rem
+            span
+                font-size: 1.6rem
 
     @media (max-width: 36rem)
         max-width: 28rem
+        gap: 2rem
         
+        .info
+            h1
+                font-size: 1.6rem
+            span
+                font-size: 1.4rem

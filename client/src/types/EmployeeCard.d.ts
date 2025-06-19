@@ -1,4 +1,5 @@
 export interface EmployeeCardProps {
+    image: string;
     services: string;
     employee: string;
 }
