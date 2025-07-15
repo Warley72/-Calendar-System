@@ -1,12 +1,13 @@
 "use client"
 
+import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, } from "@/components/ui/dialog"
 
-import { useState } from "react"
+import styles from "./modal.module.sass"
 
 type Props = {
     open: boolean
@@ -21,7 +22,7 @@ type Props = {
     }) => void
 }
 
-const horariosDisponiveis = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00"]
+const horariosDisponiveis = ["09:00", "10:00", "11:00", "13:00", "14:00"]
 
 export default function CalendarModal({ open, onClose, selectedDate, horariosOcupados, onConfirm }: Props) {
     const [name, setName] = useState("")
@@ -38,36 +39,29 @@ export default function CalendarModal({ open, onClose, selectedDate, horariosOcu
 
     return (
         <Dialog open={open} onOpenChange={onClose}>
-            <DialogContent>
+            <DialogContent className={styles.wrapperContent}>
                 <DialogHeader>
                     <DialogTitle>Agendar para {selectedDate}</DialogTitle>
                 </DialogHeader>
-
-                <div className="space-y-4">
-                    <div>
-                        <Label>Nome</Label>
-                        <Input value={name} onChange={(e) => setName(e.target.value)} />
+                <form action="">
+                    <div className="">
+                        <div className="">
+                            <Input placeholder="seu nome" value={name} onChange={(e) => setName(e.target.value)} />
+                        </div>
+                        <div className="">
+                            <Input placeholder="Seu numero de telefone" value={phone} onChange={(e) => setPhone(e.target.value)} ></Input>
+                        </div>
                     </div>
-
-                    <div>
-                        <Label>Telefone</Label>
-                        <Input value={phone} onChange={(e) => setPhone(e.target.value)} />
-                    </div>
-
-                    <div>
-                        <Label>Serviço</Label>
-                        <Select onValueChange={setService}>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Selecione um serviço" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="Corte">Corte</SelectItem>
-                                <SelectItem value="Barba">Barba</SelectItem>
-                                <SelectItem value="Corte + Barba">Corte + Barba</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-
+                    <Select onValueChange={setService}>
+                        <SelectTrigger className="select-trigger">
+                            <SelectValue placeholder="Selecione um serviço" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Corte">Cabelo</SelectItem>
+                            <SelectItem value="Barba">Unha</SelectItem>
+                            <SelectItem value="Corte + Barba">limpeza de pele</SelectItem>
+                        </SelectContent>
+                    </Select>
                     <div>
                         <Label>Horários disponíveis</Label>
                         <div className="flex flex-wrap gap-2 mt-2">
@@ -75,10 +69,12 @@ export default function CalendarModal({ open, onClose, selectedDate, horariosOcu
                                 const ocupado = horariosOcupados.includes(hora)
                                 return (
                                     <Button
+                                        type="button"
                                         key={hora}
                                         variant={ocupado ? "destructive" : time === hora ? "default" : "outline"}
                                         disabled={ocupado}
                                         onClick={() => setTime(hora)}
+                                        className={`w-[70px] h-[40px] rounded-lg text-sm font-medium transition ${time === hora ? 'border-2 border-[#87605F] bg-white' : ''}`}
                                     >
                                         {hora}
                                     </Button>
@@ -86,9 +82,9 @@ export default function CalendarModal({ open, onClose, selectedDate, horariosOcu
                             })}
                         </div>
                     </div>
-                </div>
 
-                <DialogFooter className="pt-4">
+                </form>
+                <DialogFooter>
                     <Button onClick={handleSubmit}>Confirmar</Button>
                 </DialogFooter>
             </DialogContent>

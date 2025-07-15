@@ -55,7 +55,6 @@ export default function FullCalendarView() {
                 />
             </div>
 
-            {/* Aqui você renderiza o modal com os dados corretos */}
             <CalendarModal
                 open={isOpen}
                 onClose={closeModal}
